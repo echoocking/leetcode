@@ -51,7 +51,7 @@ public class AddTwoNums {
         for (int i=0 ; i<10; i++) {
 
         }
-//        l1.next = new ListNode(3);
+        l1.next = new ListNode(3);
         ListNode l2 = new  ListNode(1);
 //        l2.next =  new ListNode(5);
         AddTwoNums add = new AddTwoNums();
