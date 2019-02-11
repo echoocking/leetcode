@@ -91,6 +91,36 @@ public class AddTwoNums {
         return res;
     }
 
+    public ListNode standard(ListNode l1, ListNode l2) {
+        /**
+         * 这里是标准题解。脱稿膜拜敲了一遍。。。
+         * 直接将链表的非空作为循环判断条件。
+         * 将结果存入新的链表
+         * dummyHead 是用来初始化一个dummy 的初始链表
+         * 结果存在 dummyHead 的第二个node
+         */
+        ListNode dummyHead = new ListNode(0), curr = dummyHead;
+        int carry = 0;
+
+        while (l1 != null || l2 != null){
+            int v1 = (l1 != null) ? l1.val : 0;
+            int v2 = l2 != null ? l2.val : 0;
+
+            int cur_v = v1 + v2 + carry;
+            carry = cur_v / 10;
+            curr.next = new ListNode(cur_v % 10);
+            curr = curr.next;
+            l1 = l1.next;
+            l2 = l2.next;
+        }
+
+        if (carry!=0) {
+             curr.next = new ListNode(carry);
+        }
+        return dummyHead.next;
+
+    }
+
     public static void main(String[] args){
         ListNode l1 = new ListNode(2);
         l1.next = new ListNode(4);
@@ -103,7 +133,9 @@ public class AddTwoNums {
         AddTwoNums add = new AddTwoNums();
         ListNode res = add.addTwoNumbers(l1, l2);
         System.out.print(listValue(res));
-//        return res;
+
+        ListNode s_res = add.standard(l1, l2);
+        System.out.print(listValue(s_res));
 
     }
 
@@ -123,6 +155,8 @@ public class AddTwoNums {
  * l1ValueStr.equals("0")
  *
  * 2.最后一位如果有进位，需要处理
+ *
+ * 官方题解写的也太简洁明了 优雅大方了吧 哇 WAW code比code得扔。。。
  */
 
 
